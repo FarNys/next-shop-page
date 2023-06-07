@@ -39,6 +39,18 @@ export const lightTheme = createTheme({
     //   },
   },
   shadows: "none",
+  typography: {
+    button: {
+      textTransform: "none",
+    },
+  },
+  components: {
+    MuiInput: {
+      defaultProps: {
+        disableUnderline: true,
+      },
+    },
+  },
 });
 export const darkTheme = createTheme({
   // direction: "rtl",

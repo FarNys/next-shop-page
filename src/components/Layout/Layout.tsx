@@ -6,6 +6,7 @@ import Link from "next/link";
 import CategoryMenu from "./CategoryMenu";
 import Header from "./Header";
 import HeroSection from "./HeroSection";
+import Promotion from "./Promotion";
 
 interface LayoutType {
   children: React.ReactNode;
@@ -21,6 +22,7 @@ const Layout = ({ children }: LayoutType) => {
       <Header />
       <HeroSection />
       <CategoryMenu />
+      <Promotion />
       <h1>Layout</h1>
 
       {/* <Button>Click Me</Button> */}

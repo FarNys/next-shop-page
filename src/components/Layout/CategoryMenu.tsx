@@ -65,6 +65,7 @@ const CategoryMenu = () => {
                     position: "relative",
                     alignItems: "center",
                     minWidth: "max-content",
+                    zIndex: 100,
                   }}
                   onMouseOver={() => mouseOverItemHandler(index)}
                   onMouseLeave={mouseLeaveItemHandler}

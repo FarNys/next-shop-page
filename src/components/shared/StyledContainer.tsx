@@ -14,7 +14,7 @@ const StyledContainer = ({ children, sx, ...rest }: StyleContainerrType) => {
       sx={{
         position: "relative",
 
-        my: theme.spacing(1),
+        mt: theme.spacing(1),
         borderRadius: theme.spacing(1),
         // overflow: "hidden",
         width: "95%",
