@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 export const getProducts = async (limit: number = 10) => {
   const res: ResultType<ProductsType> = await Axios.get(ALL_URLS.PRODUCTS, {
     params: {
-      limit: limit,
+      limit,
     },
   });
   return res.data;
@@ -16,5 +16,24 @@ export const useProducts = (limit: number = 10) => {
   return useQuery({
     queryKey: [ALL_URLS.PRODUCTS, limit],
     queryFn: () => getProducts(limit),
+  });
+};
+
+export const getPopularProducts = async (limit: number = 1000) => {
+  const res: {
+    data: ProductsType[];
+  } = await Axios.get(ALL_URLS.POPULAR_PRODUCTS, {
+    params: {
+      limit,
+      type_slug: "grocery",
+    },
+  });
+  return res.data;
+};
+
+export const usePopularProducts = (limit: number = 1000) => {
+  return useQuery({
+    queryKey: [ALL_URLS.POPULAR_PRODUCTS],
+    queryFn: () => getPopularProducts(limit),
   });
 };

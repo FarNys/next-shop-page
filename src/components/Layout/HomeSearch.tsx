@@ -1,5 +1,5 @@
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import React, { MouseEventHandler, useEffect, useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 import IconCreator from "../icons/category/IconCreator";
 
@@ -10,6 +10,12 @@ const HomeSearch = () => {
   useEffect(() => {
     inputRef.current?.focus();
   }, [inputRef]);
+
+  const searchHandler = (e: React.MouseEvent<HTMLElement>): void => {
+    e.preventDefault();
+    console.log(e);
+  };
+
   return (
     <Box
       sx={{
@@ -30,14 +36,16 @@ const HomeSearch = () => {
           mt: 2,
           position: "relative",
         }}
+        component="form"
+        onSubmit={(e) => e.preventDefault()}
       >
         <TextField
           type="text"
           inputRef={inputRef}
           sx={{
             "& input": {
-              px: theme.spacing(3),
-              py: theme.spacing(1.5),
+              px: theme.spacing(2),
+              py: theme.spacing(1),
             },
             "& .MuiOutlinedInput-root": {
               borderRadius: `${theme.spacing(0.5)} 0 0 ${theme.spacing(0.5)}}`,
@@ -47,7 +55,13 @@ const HomeSearch = () => {
         <Button
           variant="contained"
           startIcon={<BsSearch />}
-          sx={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+          sx={{
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+            border: `1px solid ${theme.palette.primary.main}`,
+          }}
+          onClick={searchHandler}
+          type="submit"
         >
           Search
         </Button>

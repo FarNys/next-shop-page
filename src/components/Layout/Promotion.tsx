@@ -20,10 +20,11 @@ const Promotion = () => {
           padding: theme.spacing(1),
           border: "1px solid red",
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          gridTemplateColumns: "repeat(4,1fr)",
           width: "100%",
+          gap: theme.spacing(0.5),
           [theme.breakpoints.down("lg")]: {
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: "repeat(2,1fr)",
           },
           [theme.breakpoints.down("sm")]: {
             gridTemplateColumns: "1fr",
@@ -36,7 +37,7 @@ const Promotion = () => {
             sx={{
               position: "relative",
               aspectRatio: 2,
-              m: theme.spacing(0.5),
+              // m: theme.spacing(0.5),
               borderRadius: theme.spacing(1),
               overflow: "hidden",
             }}

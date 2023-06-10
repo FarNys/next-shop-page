@@ -6,12 +6,11 @@ const Axios = axios.create({
   timeout: 3000,
 });
 
-Axios.interceptors.request.use((config) => {
-  config.params = {
-    ...config.params,
-    limit: 1000,
-  };
-  return config;
-});
+// Axios.interceptors.request.use((config) => {
+//   config.params = {
+//     ...config.params,
+//   };
+//   return config;
+// });
 
 export default Axios;

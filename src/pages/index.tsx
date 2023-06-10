@@ -4,16 +4,23 @@ import Image from "next/image";
 import Button from "@mui/material/Button";
 import Axios from "@/Axios";
 import { dehydrate, QueryClient } from "@tanstack/react-query";
-import { getProducts, useProducts } from "@/hooks/useProducts";
+import {
+  getPopularProducts,
+  getProducts,
+  usePopularProducts,
+  useProducts,
+} from "@/hooks/useProducts";
 import { ALL_URLS } from "@/utils/constant";
 import { NextPageWithLayout } from "@/types";
+import { getLayoutData } from "@/hooks/useLayout";
+import PopularProducts from "@/components/Home/PopularProducts";
 
 export const Home: NextPageWithLayout = () => {
   const { data } = useProducts();
+
   return (
     <div>
-      <h1>Home</h1>
-      <Button variant="outlined">Click Me</Button>
+      <PopularProducts />
     </div>
   );
 };
@@ -26,10 +33,14 @@ export default Home;
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
-  // await queryClient.prefetchQuery({
-  //   queryKey: [ALL_URLS.CATEGORIES],
-  //   queryFn: () => getLayoutData(),
-  // });
+  await queryClient.prefetchQuery({
+    queryKey: [ALL_URLS.CATEGORIES],
+    queryFn: () => getLayoutData(),
+  });
+  await queryClient.prefetchQuery({
+    queryKey: [ALL_URLS.POPULAR_PRODUCTS],
+    queryFn: () => getPopularProducts(),
+  });
 
   return {
     props: {

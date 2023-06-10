@@ -23,9 +23,6 @@ const Layout = ({ children }: LayoutType) => {
       <HeroSection />
       <CategoryMenu />
       <Promotion />
-      <h1>Layout</h1>
-
-      {/* <Button>Click Me</Button> */}
       {children}
     </Box>
   );

@@ -1,6 +1,14 @@
 // import { LinkBehaviour } from "@/Components/Shared/LinkBehaviour";
 import { createTheme } from "@mui/material";
 
+export const CLAMP_LINE = {
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  display: "-webkit-box",
+  "-webkit-line-clamp": 2,
+  "-webkit-box-orient": "vertical",
+};
+
 export const lightTheme = createTheme({
   // direction: "rtl",
   palette: {

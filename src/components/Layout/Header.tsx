@@ -67,6 +67,7 @@ const Header = () => {
         ))}
       </List>
       <Box>Sign In</Box>
+      <Box>Cart</Box>
     </Box>
   );
 };

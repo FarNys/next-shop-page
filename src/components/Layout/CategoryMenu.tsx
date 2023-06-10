@@ -17,6 +17,7 @@ const CategoryMenu = () => {
   const [selectedTab, setselectedTab] = useState<number | null>(null);
   const theme = useTheme();
   const { data } = useLayout();
+  // console.log(data);
   const categories = useMemo(() => {
     if (!data) return;
     return data.data.filter(
