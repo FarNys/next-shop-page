@@ -6,6 +6,11 @@ export type NextPageWithLayout<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
+export interface CartType {
+  count: number;
+  product: ProductsType;
+}
+
 export interface ImageType {
   id: string;
   original: string;

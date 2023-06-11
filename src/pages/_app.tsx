@@ -12,6 +12,7 @@ import {
 } from "@tanstack/react-query";
 import { useState } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { GlobalContextProvider } from "@/components/Context/context";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -36,12 +37,14 @@ export default function App({
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <CacheProvider value={emotionCache}>
-          <ThemeProvider theme={lightTheme}>
-            <CssBaseline />
-            {getLayout(<Component {...pageProps} />)}
-          </ThemeProvider>
-        </CacheProvider>
+        <GlobalContextProvider>
+          <CacheProvider value={emotionCache}>
+            <ThemeProvider theme={lightTheme}>
+              <CssBaseline />
+              {getLayout(<Component {...pageProps} />)}
+            </ThemeProvider>
+          </CacheProvider>
+        </GlobalContextProvider>
       </Hydrate>
       <ReactQueryDevtools />
     </QueryClientProvider>

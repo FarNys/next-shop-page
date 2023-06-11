@@ -3,6 +3,12 @@ a {
   color: inherit;
   /* width: "100%" !important; */
 }
+.clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
 .clamp-2 {
   overflow: hidden;
   display: -webkit-box;
