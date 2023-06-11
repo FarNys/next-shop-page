@@ -27,7 +27,9 @@ const PopularProductContainer = ({
   return (
     <StyledContainer sx={{ padding: theme.spacing(2) }}>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Typography color={theme.palette.secondary.main}>{title}</Typography>
+        <Typography color={theme.palette.info.main} fontWeight="bold">
+          {value[0].categories[0].name}
+        </Typography>
         <List
           sx={{
             p: 0,
@@ -45,7 +47,7 @@ const PopularProductContainer = ({
           }}
         >
           <Link
-            href={value[0].categories[0].slug}
+            href={title}
             style={{
               display: "flex",
               alignItems: "center",

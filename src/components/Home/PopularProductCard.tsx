@@ -1,8 +1,16 @@
 import { ProductsType } from "@/types";
-import { Box, Button, Chip, Typography, useTheme } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Chip,
+  Snackbar,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import StyledButton from "../shared/StyledButton";
 import { useRouter } from "next/router";
 import { BsCart } from "react-icons/bs";
@@ -15,6 +23,7 @@ interface PopularProductCardProps {
 }
 
 const PopularProductCard = ({ item }: PopularProductCardProps) => {
+  const [isOpenSnack, setisOpenSnack] = useState(false);
   const { setCart, cart } = useGlobalContext();
   const theme = useTheme();
   const [storeKey, setStoreKey] = useLocalStorage("cart", []);
@@ -52,6 +61,11 @@ const PopularProductCard = ({ item }: PopularProductCardProps) => {
       ];
       updateCartAndStorage(newItem, setCart, setStoreKey);
     }
+    setisOpenSnack(true);
+  };
+
+  const closeSnackHandler = () => {
+    setisOpenSnack(false);
   };
 
   // useEffect(() => {
@@ -59,74 +73,107 @@ const PopularProductCard = ({ item }: PopularProductCardProps) => {
   // }, [cart, setStoreKey]);
 
   return (
-    <Box
-      sx={{
-        border: `1px solid ${theme.palette.background.default}`,
-        borderRadius: theme.spacing(1),
-        "&: hover": {
-          border: `1px solid ${theme.palette.primary.main}`,
-        },
-      }}
-    >
+    <React.Fragment>
       <Box
         sx={{
-          width: "100%",
-          aspectRatio: 1.5,
-          position: "relative",
+          border: `1px solid ${theme.palette.background.default}`,
+          borderRadius: theme.spacing(1),
+          "&: hover": {
+            border: `1px solid ${theme.palette.primary.main}`,
+          },
         }}
       >
-        {item.sale_price && (
-          <Chip
-            label={`${(100 - (item.sale_price / item.price) * 100).toPrecision(
-              2
-            )}%`}
-            sx={{
-              position: "absolute",
-              top: theme.spacing(1),
-              right: theme.spacing(1),
-              zIndex: 10,
-            }}
-            color="primary"
-            size="small"
-          />
-        )}
-        <Image
-          alt={item.name}
-          src={item.image.thumbnail}
-          fill
-          style={{ objectFit: "contain" }}
-        />
-      </Box>
-      <Box sx={{ padding: theme.spacing(2) }}>
-        <Typography variant="body2" className="clamp-1">
-          {item.name}
-        </Typography>
-        <Typography className="clamp-2" variant="body2" sx={{ mt: 1 }}>
-          {item.description}
-        </Typography>
         <Box
           sx={{
-            display: "flex",
-            mt: 1,
-            justifyContent: "space-between",
-            alignItems: "center",
+            width: "100%",
+            aspectRatio: 1.5,
+            position: "relative",
           }}
         >
-          <Typography>${item.sale_price ?? item.price}</Typography>
-          <Link href={item.slug} style={{ color: theme.palette.primary.main }}>
-            <Typography variant="subtitle2">+More</Typography>
-          </Link>
+          {item.sale_price && (
+            <Chip
+              label={`${(
+                100 -
+                (item.sale_price / item.price) * 100
+              ).toPrecision(2)}%`}
+              sx={{
+                position: "absolute",
+                top: theme.spacing(1),
+                right: theme.spacing(1),
+                zIndex: 10,
+              }}
+              color="primary"
+              size="small"
+            />
+          )}
+          <Image
+            alt={item.name}
+            src={item.image.thumbnail}
+            fill
+            style={{ objectFit: "contain" }}
+          />
         </Box>
-        <Button
-          sx={{ width: "100%", mt: theme.spacing(2) }}
-          variant="outlined"
-          startIcon={<BsCart />}
-          onClick={addToCartHandler}
-        >
-          <Typography variant="subtitle1">+ Add To Cart</Typography>
-        </Button>
+        <Box sx={{ padding: theme.spacing(2) }}>
+          <Typography
+            variant="body2"
+            className="clamp-1"
+            color={theme.palette.text.primary}
+            fontWeight={500}
+          >
+            {item.name}
+          </Typography>
+          <Typography
+            className="clamp-2"
+            variant="body2"
+            sx={{ mt: 1 }}
+            color={theme.palette.text.secondary}
+          >
+            {item.description}
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              mt: 1,
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography fontWeight={600}>
+              ${item.sale_price ?? item.price}
+            </Typography>
+            <Link
+              href={item.slug}
+              style={{ color: theme.palette.primary.main }}
+            >
+              <Typography variant="subtitle2">+More</Typography>
+            </Link>
+          </Box>
+          <Button
+            sx={{ width: "100%", mt: theme.spacing(2) }}
+            variant="outlined"
+            startIcon={<BsCart />}
+            onClick={addToCartHandler}
+          >
+            <Typography variant="subtitle1">+ Add To Cart</Typography>
+          </Button>
+        </Box>
       </Box>
-    </Box>
+      <Snackbar
+        open={isOpenSnack}
+        onClose={closeSnackHandler}
+        autoHideDuration={3000}
+      >
+        <Alert
+          onClose={closeSnackHandler}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          <Typography color={theme.palette.success.main}>
+            {item.name} successfully added to cart!
+          </Typography>
+        </Alert>
+      </Snackbar>
+    </React.Fragment>
   );
 };
 

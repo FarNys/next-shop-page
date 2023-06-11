@@ -51,6 +51,7 @@ export const lightTheme = createTheme({
     button: {
       textTransform: "none",
     },
+    fontFamily: ["Poppins", "sans-serif"].join(","),
   },
   components: {
     MuiInput: {

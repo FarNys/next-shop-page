@@ -1,6 +1,7 @@
 a {
   text-decoration: none;
   color: inherit;
+  font-family: "Poppins", sans-serif;
   /* width: "100%" !important; */
 }
 .clamp-1 {

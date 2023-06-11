@@ -24,10 +24,8 @@ const PopularProducts = () => {
       const key = el.categories[0].slug;
 
       if (key in emptyObject) {
-        // console.log(key);
         emptyObject[key] = [...emptyObject[key], el];
       }
-      //   console.log([emptyObject[el.categories[0].slug]]);
     });
 
     return emptyObject;
