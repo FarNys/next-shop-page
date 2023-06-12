@@ -16,6 +16,7 @@ const StyledContainer = ({ children, sx, ...rest }: StyleContainerrType) => {
 
         mt: theme.spacing(1),
         borderRadius: theme.spacing(1),
+        padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
         // overflow: "hidden",
         width: "95%",
         backgroundColor: theme.palette.background.paper,

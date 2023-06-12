@@ -5,7 +5,7 @@ import IconCreator from "../icons/category/IconCreator";
 import Link from "next/link";
 import CategoryMenu from "./CategoryMenu";
 import Header from "./Header";
-import HeroSection from "./HeroSection";
+import HeroSection from "../Home/HeroSection";
 import Promotion from "./Promotion";
 
 interface LayoutType {
@@ -16,9 +16,7 @@ const Layout = ({ children }: LayoutType) => {
   return (
     <Box sx={{ position: "relative", minHeight: "100vh", width: "100%" }}>
       <Header />
-      <HeroSection />
-      <CategoryMenu />
-      <Promotion />
+
       {children}
     </Box>
   );

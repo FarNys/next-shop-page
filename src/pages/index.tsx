@@ -14,12 +14,18 @@ import { ALL_URLS } from "@/utils/constant";
 import { NextPageWithLayout } from "@/types";
 import { getLayoutData } from "@/hooks/useLayout";
 import PopularProducts from "@/components/Home/PopularProducts";
+import HeroSection from "@/components/Home/HeroSection";
+import CategoryMenu from "@/components/Layout/CategoryMenu";
+import Promotion from "@/components/Layout/Promotion";
 
 export const Home: NextPageWithLayout = () => {
   const { data } = useProducts();
 
   return (
     <div>
+      <HeroSection />
+      <CategoryMenu />
+      <Promotion />
       <PopularProducts />
     </div>
   );

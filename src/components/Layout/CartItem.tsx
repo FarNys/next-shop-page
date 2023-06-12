@@ -24,7 +24,7 @@ interface CartItemProps {
   item: CartType;
 }
 
-function GrowTransition(props: SlideProps) {
+function SlideTransition(props: SlideProps) {
   return <Slide {...props} direction="up" />;
 }
 
@@ -127,12 +127,12 @@ const CartItem = ({ item }: CartItemProps) => {
     });
   };
 
-  const handleExit = () => {
-    setsnackState({
-      ...snackState,
-      message: "",
-    });
-  };
+  // const handleExit = () => {
+  //   setsnackState({
+  //     ...snackState,
+  //     message: "",
+  //   });
+  // };
 
   return (
     <React.Fragment>
@@ -211,9 +211,8 @@ const CartItem = ({ item }: CartItemProps) => {
         open={snackState.state}
         onClose={closeSnackHandler}
         autoHideDuration={1500}
-        TransitionComponent={GrowTransition}
+        TransitionComponent={SlideTransition}
         key={snackState.message}
-        TransitionProps={{ onExit: handleExit }}
       >
         <Alert
           onClose={closeSnackHandler}
@@ -224,11 +223,7 @@ const CartItem = ({ item }: CartItemProps) => {
             {" "}
             <Typography>{item.product.name}&nbsp;</Typography>
             <Typography
-              color={
-                snackState.type === "success"
-                  ? theme.palette.success.main
-                  : theme.palette.warning.main
-              }
+              color={theme.palette?.[snackState.type]?.main || "success"}
             >
               {snackState.message}
             </Typography>

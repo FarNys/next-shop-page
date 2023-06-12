@@ -25,15 +25,26 @@ const HomeSearch = () => {
         transform: "translate(-50%,-50%)",
       }}
     >
-      <Typography variant="h4" component="h1" textAlign="center">
-        Find Your Product
+      <Typography
+        variant="h4"
+        component="h1"
+        textAlign="center"
+        fontWeight={800}
+      >
+        Grocery Delivered in 90 Minutes
+      </Typography>
+      <Typography
+        color={theme.palette.text.secondary}
+        sx={{ mt: theme.spacing(2), mb: theme.spacing(3) }}
+      >
+        Get your healthy foods & snacks delivered at your doorsteps all day
+        everyday
       </Typography>
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
           flexDirection: "row",
-          mt: 2,
           position: "relative",
         }}
         component="form"
@@ -42,7 +53,9 @@ const HomeSearch = () => {
         <TextField
           type="text"
           inputRef={inputRef}
+          placeholder="Search you products . . ."
           sx={{
+            width: "100%",
             "& input": {
               px: theme.spacing(2),
               py: theme.spacing(1),

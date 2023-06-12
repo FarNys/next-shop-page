@@ -142,7 +142,7 @@ const PopularProductCard = ({ item }: PopularProductCardProps) => {
               ${item.sale_price ?? item.price}
             </Typography>
             <Link
-              href={item.slug}
+              href={`/products/${item.slug}`}
               style={{ color: theme.palette.primary.main }}
             >
               <Typography variant="subtitle2">+More</Typography>
@@ -154,23 +154,26 @@ const PopularProductCard = ({ item }: PopularProductCardProps) => {
             startIcon={<BsCart />}
             onClick={addToCartHandler}
           >
-            <Typography variant="subtitle1">+ Add To Cart</Typography>
+            <Typography variant="subtitle1">+ Add</Typography>
           </Button>
         </Box>
       </Box>
       <Snackbar
         open={isOpenSnack}
         onClose={closeSnackHandler}
-        autoHideDuration={3000}
+        autoHideDuration={1500}
       >
         <Alert
           onClose={closeSnackHandler}
           severity="success"
           sx={{ width: "100%" }}
         >
-          <Typography color={theme.palette.success.main}>
-            {item.name} successfully added to cart!
-          </Typography>
+          <Box sx={{ display: "flex" }}>
+            <Typography>{item.name}&nbsp;</Typography>
+            <Typography color={theme.palette.success.main}>
+              successfully added to cart!
+            </Typography>
+          </Box>
         </Alert>
       </Snackbar>
     </React.Fragment>

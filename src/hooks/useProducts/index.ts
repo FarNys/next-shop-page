@@ -3,6 +3,25 @@ import { ProductsType, ResultType } from "@/types";
 import { ALL_URLS } from "@/utils/constant";
 import { useQuery } from "@tanstack/react-query";
 
+export const getSingleProduct = async (limit: number = 10, slug: string) => {
+  const res: ResultType<ProductsType> = await Axios.get(
+    ALL_URLS.PRODUCTS + `/${slug}`,
+    {
+      params: {
+        limit,
+      },
+    }
+  );
+  return res.data;
+};
+
+export const useSingleProduct = (limit: number = 10, slug: string) => {
+  return useQuery({
+    queryKey: [ALL_URLS.PRODUCTS, slug, limit],
+    queryFn: () => getSingleProduct(limit, slug),
+  });
+};
+
 export const getProducts = async (limit: number = 10) => {
   const res: ResultType<ProductsType> = await Axios.get(ALL_URLS.PRODUCTS, {
     params: {
