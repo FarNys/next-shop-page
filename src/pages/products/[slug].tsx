@@ -6,8 +6,9 @@ import { QueryClient, dehydrate } from "@tanstack/react-query";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React from "react";
+import Product from "@/components/products/Product";
 
-const Product = () => {
+const ProductPage = () => {
   const router = useRouter();
   const { data: singleProduct } = useSingleProduct(
     10,
@@ -16,14 +17,14 @@ const Product = () => {
   console.log(singleProduct);
   return (
     <StyledContainer>
-      <p>f</p>
+      <Product />
     </StyledContainer>
   );
 };
 
-export default Product;
+export default ProductPage;
 
-Product.getLayout = (page: React.ReactElement) => {
+ProductPage.getLayout = (page: React.ReactElement) => {
   return <Layout>{page}</Layout>;
 };
 

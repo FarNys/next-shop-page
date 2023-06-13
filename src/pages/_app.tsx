@@ -33,7 +33,16 @@ export default function App({
   emotionCache = clientSideEmotionCache,
 }: any) {
   const getLayout = Component.getLayout || ((page: any) => page);
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false,
+          },
+        },
+      })
+  );
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>

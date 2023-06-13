@@ -14,7 +14,6 @@ import Link from "next/link";
 import StyledContainer from "../shared/StyledContainer";
 
 const CategoryMenu = () => {
-  const [selectedTab, setselectedTab] = useState<number | null>(null);
   const theme = useTheme();
   const { data } = useLayout();
   const categories = useMemo(() => {
@@ -23,14 +22,6 @@ const CategoryMenu = () => {
       (el: any) => el.children.length > 0 && el.type.id === 1
     );
   }, [data]);
-
-  const mouseOverItemHandler = (index: number) => {
-    setselectedTab(index);
-  };
-
-  const mouseLeaveItemHandler = () => {
-    setselectedTab(null);
-  };
 
   return (
     <StyledContainer>
@@ -66,9 +57,10 @@ const CategoryMenu = () => {
                     alignItems: "center",
                     minWidth: "max-content",
                     zIndex: 100,
+                    "&:hover ul": {
+                      display: "block",
+                    },
                   }}
-                  onMouseOver={() => mouseOverItemHandler(index)}
-                  onMouseLeave={mouseLeaveItemHandler}
                 >
                   <IconCreator iconName={el.icon} />
                   <Typography
@@ -84,7 +76,7 @@ const CategoryMenu = () => {
                         position: "absolute",
                         top: "100%",
                         left: 0,
-                        display: selectedTab === index ? "block" : "none",
+                        display: "none",
                         border: "1px solid blue",
                         borderRadius: theme.spacing(1),
                         //   padding: theme.spacing(1),
